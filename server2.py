@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from scrape import run as scrape_runner
+from logger import trigger_log_save
+
 app = FastAPI()
 
 
@@ -15,5 +17,6 @@ def read_root():
 
 @app.post("/box-office-mojo-scraper")
 def scrape_runner_view():
+    trigger_log_save()
     scrape_runner()
     return {"data": [1,2,3]}

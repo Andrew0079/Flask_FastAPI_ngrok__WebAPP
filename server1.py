@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from scrape import run as scrape_runner
-
+from logger import trigger_log_save
 
 app = Flask(__name__)
 
@@ -18,6 +18,7 @@ def abc_view():
 
 @app.route('/box-office-mojo-scraper', methods=['POST'])
 def box_office_scraper_view():
+    trigger_log_save()
     scrape_runner()
     return {'data': [1, 2, 3]}
 
